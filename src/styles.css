@@ -360,8 +360,40 @@
 }
 .field::placeholder { color: oklch(0.94 0.012 80 / 0.35); }
 
+/* Sticky section stacking */
+.sticky-section {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  will-change: transform, opacity;
+}
+
+/* GPU-accelerated transforms for smooth sticky scrolling */
+.sticky-section > * {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Section transition glow edge */
+.section-glow-edge {
+  position: relative;
+}
+.section-glow-edge::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, oklch(0.78 0.16 65 / 0.4), transparent);
+  filter: blur(0.5px);
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .fog, .breathe, .shimmer::after { animation: none !important; }
   html { scroll-behavior: auto; }
+  .sticky-section { position: relative; }
 }
