@@ -10,9 +10,6 @@ export default defineConfig(async ({ command }) => {
     tailwindcss(),
     tsConfigPaths({ projects: ["./tsconfig.json"] }),
     tanstackStart({
-      // TanStack Start's server entry is routed through src/server.ts,
-      // which wraps SSR errors in a plain error page instead of a raw 500.
-      server: { entry: "server" },
       importProtection: {
         behavior: "error",
         client: { files: ["**/server/**"], specifiers: ["server-only"] },
@@ -22,11 +19,11 @@ export default defineConfig(async ({ command }) => {
   ];
 
   // Nitro packages the server build for deployment; only needed at build time.
-  // Swap the preset below (e.g. "node-server", "vercel", "netlify") to target
-  // a different host — see https://nitro.build/deploy for the full list.
+  // Using the "vercel" preset to deploy as Vercel Serverless Functions.
+  // See https://nitro.build/deploy for the full list of presets.
   if (command === "build") {
     const { nitro } = await import("nitro/vite");
-    plugins.push(nitro({ preset: "cloudflare-module" }));
+    plugins.push(nitro({ preset: "vercel" }));
   }
 
   return {
