@@ -10,6 +10,7 @@ export default defineConfig(async ({ command }) => {
     tailwindcss(),
     tsConfigPaths({ projects: ["./tsconfig.json"] }),
     tanstackStart({
+      server: { entry: "server" },
       importProtection: {
         behavior: "error",
         client: { files: ["**/server/**"], specifiers: ["server-only"] },
