@@ -46,19 +46,19 @@ function CohortiaSite() {
       <div className="grain-layer" />
       <main className="relative z-10 min-h-screen text-foreground antialiased">
         <Nav />
-        <StickySection height="180vh" fadeOut>
+        <StickySection height="120vh" fadeOut>
           <Hero />
         </StickySection>
         <SectionDivider variant="wave" />
         <Trusted />
         <SectionDivider variant="dots" />
-        <StickySection height="160vh" fadeOut>
+        <StickySection height="120vh" fadeOut>
           <What />
         </StickySection>
         <SectionDivider variant="pulse" />
         <Services />
         <SectionDivider variant="wave" />
-        <StickySection height="180vh" fadeOut>
+        <StickySection height="120vh" fadeOut>
           <ProblemSolution />
         </StickySection>
         <SectionDivider variant="dots" />
@@ -91,7 +91,7 @@ function Nav() {
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled ? "glass-panel border-b border-border" : ""
       }`}
@@ -107,7 +107,7 @@ function Nav() {
             className="font-display text-lg italic"
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
           >
             Cohortia Labs
           </motion.span>
@@ -121,7 +121,7 @@ function Nav() {
               onMouseEnter={() => pulseSignatureField(0.7)}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+              transition={{ duration: 0.3, delay: 0.15 + i * 0.06 }}
             >
               {l.label}
             </motion.a>
@@ -133,7 +133,7 @@ function Nav() {
           className="rounded-full bg-primary px-4 py-2 text-xs font-medium text-primary-foreground hover:opacity-90 transition"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.8, type: "spring" }}
+          transition={{ duration: 0.3, delay: 0.3, type: "spring" }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -154,7 +154,7 @@ function Hero() {
         style={{ fontSize: "42vw", left: "-4vw", top: "-8vw" }}
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 0.05, scale: 1 }}
-        transition={{ duration: 2, delay: 0.5 }}
+        transition={{ duration: 1, delay: 0.2 }}
       >
         01
       </motion.span>
@@ -180,7 +180,7 @@ function Hero() {
               className="font-mono-label text-primary/80 mb-6 -rotate-1 origin-left"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
             >
               Cohortia Labs · Engineering studio
             </motion.p>
@@ -193,7 +193,7 @@ function Hero() {
               className="mt-8 text-lg text-muted-foreground max-w-xl leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
               Cohortia Labs is a small engineering studio designing AI-native software, internal platforms, and applied research prototypes — end to end, from problem framing to production.
             </motion.p>
@@ -201,7 +201,7 @@ function Hero() {
               className="mt-10 flex flex-wrap items-center gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
               <motion.a
                 href="#contact"
@@ -236,7 +236,7 @@ function Hero() {
         className="pointer-events-none absolute inset-x-6 top-24 hidden md:flex items-start justify-between font-mono-label text-muted-foreground/70"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
       >
         <span>N° 001 — Bangalore / Remote</span>
         <span>Vol. {new Date().getFullYear()}  ·  Rendered live, on scroll</span>
@@ -247,7 +247,7 @@ function Hero() {
         className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
+        transition={{ delay: 0.8 }}
       >
         <span className="font-mono-label text-muted-foreground/50 text-[10px]">SCROLL</span>
         <motion.svg

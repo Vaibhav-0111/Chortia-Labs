@@ -118,16 +118,11 @@ function MoodSVGLayer() {
     opacity: number;
     color: string;
   }> = [
-    { shape: "hex", size: 120, x: "8%", y: "15%", duration: 45, delay: 0, opacity: 0.12, color: "oklch(0.78 0.16 65)" },
-    { shape: "tri", size: 80, x: "85%", y: "8%", duration: 38, delay: 2, opacity: 0.08, color: "oklch(0.85 0.18 70)" },
-    { shape: "circle", size: 60, x: "92%", y: "35%", duration: 52, delay: 4, opacity: 0.1, color: "oklch(0.78 0.16 65)" },
-    { shape: "diamond", size: 100, x: "5%", y: "45%", duration: 42, delay: 1, opacity: 0.07, color: "oklch(0.94 0.012 80)" },
-    { shape: "ring", size: 140, x: "75%", y: "55%", duration: 60, delay: 3, opacity: 0.09, color: "oklch(0.78 0.16 65)" },
-    { shape: "cross", size: 50, x: "20%", y: "70%", duration: 35, delay: 5, opacity: 0.06, color: "oklch(0.94 0.012 80)" },
-    { shape: "hex", size: 90, x: "60%", y: "80%", duration: 48, delay: 2, opacity: 0.08, color: "oklch(0.85 0.18 70)" },
-    { shape: "tri", size: 70, x: "40%", y: "25%", duration: 55, delay: 6, opacity: 0.06, color: "oklch(0.78 0.16 65)" },
-    { shape: "diamond", size: 55, x: "50%", y: "60%", duration: 40, delay: 1, opacity: 0.05, color: "oklch(0.94 0.012 80)" },
-    { shape: "ring", size: 110, x: "15%", y: "90%", duration: 50, delay: 4, opacity: 0.07, color: "oklch(0.85 0.18 70)" },
+    { shape: "hex", size: 100, x: "8%", y: "15%", duration: 50, delay: 0, opacity: 0.08, color: "oklch(0.78 0.16 65)" },
+    { shape: "tri", size: 70, x: "85%", y: "10%", duration: 45, delay: 0, opacity: 0.06, color: "oklch(0.85 0.18 70)" },
+    { shape: "ring", size: 120, x: "75%", y: "55%", duration: 60, delay: 0, opacity: 0.06, color: "oklch(0.78 0.16 65)" },
+    { shape: "diamond", size: 80, x: "5%", y: "50%", duration: 55, delay: 0, opacity: 0.05, color: "oklch(0.94 0.012 80)" },
+    { shape: "circle", size: 60, x: "50%", y: "80%", duration: 50, delay: 0, opacity: 0.05, color: "oklch(0.85 0.18 70)" },
   ];
 
   return (
@@ -222,14 +217,14 @@ function StickySection({
 
   const opacity = useTransform(
     scrollYProgress,
-    fadeOut ? [0, 0.1, 0.7, 1] : [0, 0.1, 1, 1],
+    fadeOut ? [0, 0.05, 0.75, 1] : [0, 0.05, 1, 1],
     fadeOut ? [0, 1, 1, 0] : [0, 1, 1, 1],
   );
-  const scale = useTransform(scrollYProgress, [0, 0.1, 0.8, 1], [0.97, 1, 1, 0.98]);
-  const y = useTransform(scrollYProgress, [0.8, 1], [0, -60]);
+  const scale = useTransform(scrollYProgress, [0, 0.05, 0.85, 1], [0.98, 1, 1, 0.99]);
+  const y = useTransform(scrollYProgress, [0.85, 1], [0, -40]);
 
-  const smoothOpacity = useSpring(opacity, { stiffness: 100, damping: 30 });
-  const smoothScale = useSpring(scale, { stiffness: 100, damping: 30 });
+  const smoothOpacity = useSpring(opacity, { stiffness: 200, damping: 30 });
+  const smoothScale = useSpring(scale, { stiffness: 200, damping: 30 });
 
   return (
     <div ref={containerRef} style={{ height }} className="relative">
@@ -258,14 +253,14 @@ function RevealOnScroll({
   className?: string;
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-15% 0px" });
+  const inView = useInView(ref, { once: true, margin: "-8% 0px" });
 
   const variants = {
     hidden: {
       opacity: 0,
-      y: direction === "up" ? 50 : 0,
-      x: direction === "left" ? -50 : direction === "right" ? 50 : 0,
-      filter: "blur(8px)",
+      y: direction === "up" ? 30 : 0,
+      x: direction === "left" ? -30 : direction === "right" ? 30 : 0,
+      filter: "blur(4px)",
     },
     visible: {
       opacity: 1,
@@ -283,8 +278,8 @@ function RevealOnScroll({
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       transition={{
-        duration: 0.8,
-        delay,
+        duration: 0.5,
+        delay: delay * 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
     >
